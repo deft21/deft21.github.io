@@ -1,19 +1,32 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Сложение чисел</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<h1>Сайт для определения температуры</h1>
-<form>
-	Какой город вас интерисует?
+<!-- 	<p class= "example">7 + 4 = <span id="result">?</span></p> -->
+	<div class="container">
+		<div class= "example" id="exampleAB"></div>
+		<div class="result" id="result"></div>
+	</div>
 	<br>
+	<div class="container">
+	<input class = "inputA" type="text" name="a" size="1" id = "a" onkeyup="checkA()">
+	<input class = "inputB" type="text" name="b" size="1" id = "b" onkeyup="checkB()">
+	</div>
 	<br>
-	<input type="text" name="city" id="input">
-	<input type="submit" value="Send" id = "tab">
-</form> 
+	<canvas id="canvasA"></canvas>
+	<canvas id="canvasB"></canvas>
+	<div class="container">
+	<img src="sprite.png"/>
+		<!-- <img src="sprite.png" width="30%" align="center" border="3" hspace="10%" vspace="10%"/> -->
+	</div>	
+	
+
+
+
 	<script type="text/javascript" src = "js/javascript.js"></script>
 </body>
 </html>
