@@ -23,8 +23,6 @@ function checkA(){
   const exampleA = document.getElementById("exampleA");// для смены цвета примера
   var inputA_v = document.getElementById("a").value;// введенное значение 
   console.log(inputA_v); 
-  //maxLen=1;
-  //if (inputA.value().length>maxLen) return false; // пытался ограничить по длине??????????????????
   if(inputA_v!=a){
   console.log('не равно');
   console.log (exampleA);
