@@ -1,71 +1,79 @@
-const inputA = document.getElementById("a");//ищу элементы для ввода
-const inputB = document.getElementById("b");//ищу элементы для ввода
+const inputA = document.getElementById("a");//элементы для ввода
+const inputB = document.getElementById("b");//элементы для ввода
+const inputContainerA = document.getElementById("inputContainerA");//контейнер элемента для ввода
+const inputContainerB = document.getElementById("inputContainerB");//контейнер элемента для ввода
+const exampleAB = document.getElementById('exampleAB');//элемент для примера
+const result = document.getElementById('result');//элемент для результата
+const canvasA = document.getElementById("canvasA");//блок для первой линии
+const canvasB = document.getElementById("canvasB");//блок для второй линии
 
-const a=7,b=4;
+const a=7 ,b=4;
 Example(a,b);
-
 function Example(a,b){
-//вывожу пример
-  const exampleAB = document.getElementById('exampleAB');
-  const result = document.getElementById('result');
+//отображение примера
   exampleAB.innerHTML = '<span id = "exampleA">'+a+'</span>+<span id="exampleB">'+b+'</span><span>=</span>';
-  result.innerHTML = '<span class="result">?</span>';
-//рисую первый полукруг
-  var canvasA = document.getElementById('canvasA');
-  var ctxA = canvasA.getContext('2d');
-  
-  ctxA.strokeStyle="red";
-  ctxA.arc(65,150, 60, 0, Math.PI, true);
-  ctxA.stroke();
+  result.innerHTML = '<span class="result">?</span>'
+  draw (a,canvasA,inputContainerA);
+ };
+//рисование линий
+function draw(k,canv,inputContainer){
+  let ctx = canv.getContext("2d");     
+  let x = 39*k;
+  ctx.beginPath();
+  ctx.moveTo(0,100);
+  ctx.quadraticCurveTo(150,-100,300,100);
+  canv.style.width=x+"px";
+  inputContainer.style.width = x+"px";
+  inputContainer.style.marginLeft = x/2+15+"px";
+  inputContainer.style.marginRight = -(x/2)-15+"px";
+
+  //стрелка
+  ctx.lineTo(290, 75);
+  ctx.lineTo(270, 75);
+  ctx.lineTo(295, 93);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle="red";
+  ctx.stroke();
 };
-// провера а
+//выделение ошибок
+function RedYellow(example,input){
+  example.style.backgroundColor = "yellow";
+  input.style.color = "red";
+};
+//проверка а
 function checkA(){
-  const exampleA = document.getElementById("exampleA");// для смены цвета примера
-  var inputA_v = document.getElementById("a").value;// введенное значение 
-  console.log(inputA_v); 
+  let exampleA = document.getElementById("exampleA");
+  let inputA_v = inputA.value;
   if(inputA_v!=a){
-  console.log('не равно');
-  console.log (exampleA);
-  exampleA.style.backgroundColor = "yellow";
-  inputA.style.color = "red";
-                } else {
-                  console.log('равно');
+      RedYellow (exampleA,inputA);
+                  } else {
                   exampleA.style.backgroundColor = "white";
-                  inputA.style.color = "black";
-                  inputB.style.display = "block"; // отобразил второе поле для ввода
-                  //рисую второй полукруг
-                  var canvasB = document.getElementById('canvasB');
-                  var ctxB = canvasB.getContext('2d');
-                  
-                  ctxB.strokeStyle="red";
-                  ctxB.arc(65,100, 60, 0, Math.PI, true);
-                  ctxB.stroke();
+                  console.log(inputContainerA);
+                  inputContainerA.innerHTML = inputA_v;
+
+                  inputB.style.display = "block";
+                  draw(b,canvasB,inputContainerB);
                         };
 };
+//проверка b
 function checkB(){
-  const exampleB = document.getElementById("exampleB")// для смены цвета примера
-  var inputB_v = document.getElementById("b").value;// введенное значение
-  console.log(inputB);
+  let exampleB = document.getElementById("exampleB")
+  let inputB_v = inputB.value;
   if (inputB_v!=b){
-  console.log('не равно');
-  exampleB.style.backgroundColor = "yellow";
-  inputB.style.color = "red";
-                } else {
-                  console.log('равно');
+      RedYellow (exampleB,inputB);
+                  } else {
                   exampleB.style.backgroundColor = "white";
-                  inputB.style.color = "black";
+                  inputContainerB.innerHTML = inputB_v;
                   result.innerHTML = '<input class = "result" type="text" name="result" size="2" id = "answer">';
-                  const answer = document.getElementById('answer');
+                  let answer = document.getElementById('answer');
                   answer.onkeyup = function checkAnswer(){
-                      var answer_v = document.getElementById('answer').value;
-                      console.log(answer_v);
+                      let answer_v = answer.value;
                         if (answer_v!=a+b){
-                        console.log('не верно');
                         answer.style.color = "red";
                         } else {
-                        console.log('верно');
-                        answer.style.color = "black";
+                        result.innerHTML = answer_v;
                         };
                         }; 
   };
 };
+

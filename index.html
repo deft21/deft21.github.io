@@ -6,26 +6,33 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container row">
 		<div class= "example" id="exampleAB"></div>
 		<div class="result" id="result"></div>
 	</div>
 	<br>
-	<div class="container">
-	<input class = "inputA" type="text" name="a" size="1" id = "a" onkeyup="checkA()">
-	<input class = "inputB" type="text" name="b" size="1" id = "b" onkeyup="checkB()">
+ <div class="container row" class="col-md-2 offset-md-3">
+		<div id="inputContainerA">
+			<input class = "inputA form-control" type="text" name="a" maxlength="1" id = "a" onkeyup="checkA()">
+			<!-- <input class = "inputA form-control" type="number" name="a" maxlength="1" id = "a" min="6" max="9" onkeyup="checkA()"> -->
+		</div>
+		<div id="inputContainerB" class="col-md-2 offset-md-3">
+			<input class = "inputB form-control" type="text" name="b" maxlength="1" id = "b" onkeyup="checkB()">
+		</div>
 	</div>
-	<br>
-	<canvas id="canvasA"></canvas>
-	<canvas id="canvasB"></canvas>
-	<div class="container">
+
+	<div class="container row">
+		<canvas id="canvasA" height="100"></canvas>
+		<canvas id="canvasB" height="100"></canvas>
+	</div>
+
+
+	<div class="container row">
 	<img src="sprite.png"/>
-		<!-- <img src="sprite.png" width="30%" align="center" border="3" hspace="10%" vspace="10%"/> -->
 	</div>	
 	
-
-
-
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src = "js/javascript.js"></script>
+
 </body>
 </html>
